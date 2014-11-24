@@ -24,7 +24,7 @@ from random import random, choice
 N = 100000  # Anzahl der Durchläufe
 
 # Kugeln
-if platform.system() == "Linux":
+if platform.system() != "Windows":
     WEISS   = "\033[1;37m●\033[0m"
     SCHWARZ = "\033[1;30m●\033[0m"
     GRUEN   = "\033[1;32m●\033[0m"
