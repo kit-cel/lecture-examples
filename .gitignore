@@ -55,5 +55,5 @@ target/
 
 # jupyter
 /.ipynb_checkpoints/
-#*.slides.html
+/*.slides.html
 /reveal.js/
