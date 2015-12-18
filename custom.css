@@ -1,0 +1,21 @@
+.reveal {
+    position: absolute;
+    left: 22%;
+    width: 55%;
+    height: 73%;
+    overflow: hidden;
+    background: #FFF url(cel_logo.png) no-repeat 99% 2%;
+}
+
+.reveal .controls {
+    right: 23%;
+    bottom: 27%;
+}
+
+body {
+    background-color: #000;
+}
+
+.prompt {
+    display: none;
+}
