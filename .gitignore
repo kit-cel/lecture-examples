@@ -53,7 +53,7 @@ docs/_build/
 # PyBuilder
 target/
 
-# jupyter
-/.ipynb_checkpoints/
-/*.slides.html
-/reveal.js/
+# Jupyter
+.ipynb_checkpoints/
+*.slides.html
+reveal.js/

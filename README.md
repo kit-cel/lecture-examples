@@ -1,15 +1,19 @@
-WT-Übung
-========
+CEL Lecture Examples 
+====================
 
-Die hier abgelegten Python-Skripte werden im Laufe der Übung zur [Vorlesung Wahrscheinlichkeitstheorie](http://www.cel.kit.edu/lehre_1503.php) an der Fakultät für Elektrotechnik und Informationstechnik des Karlsruhe Institute of Technology (KIT) gezeigt. Die zugehörigen Aufgabenblätter finden sich im [ILIAS-Kurs zur Vorlesung](https://ilias.studium.kit.edu/goto_produktiv_crs_478042.html).
+This repository contains small examples and simulations used in our lectures.
 
-Abhängigkeiten
---------------
+Dependencies
+------------
+The common dependencies are
+
 - python >= 3
 - jupyter notebook
 - numpy/scipy
 - matplotlib
 
-Verwendung
-----------
-Die verwendete Programmiersprache, [Python](http://www.python.org), ist bei gängigen Linux-Distributionen und OSX vorinstalliert. Zusätzlich benötigte Module müssen aus den Paketquellen bezogen werden. Alternativ kann auch fertige Distribution, z.B. [Anaconda](https://www.continuum.io/why-anaconda) verwendet werden. Unter Windows muss in jedem Fall eine Python-Distribution installiert werden; auch hier empfiehlt sich z.B. [Anaconda](https://www.continuum.io/why-anaconda).
+Some examples may require additional Python packages.
+
+Usage / Installation
+--------------------
+The programming language used here is [Python](http://www.python.org). For novice users we recommend installing the Python distribution [Anaconda](https://www.continuum.io) which is availble for Windows, Linux and OSX. Make sure to download the *Python 3.5* edition.
