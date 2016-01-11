@@ -72,7 +72,7 @@ class Canvas(FigureCanvasQTAgg):
         ))
         # add contour line (ellipse)
         self.axes.add_artist(mp.patches.Ellipse(
-            xy=(0, 0), width=2 * a, height=2 * b, angle=-180 / pi * g,
+            xy=(0, 0), width=2 * a, height=2 * b, angle=180 / pi * g,
             facecolor='none', edgecolor='r', zorder=2, linewidth=2
         ))
 
@@ -82,7 +82,7 @@ class Canvas(FigureCanvasQTAgg):
         # get two std norm distributed vectors
         x, y = np.random.normal(0, 1, (2, self.points_per_update))
         # scaling parameters
-        r1, r2 = np.sqrt((1 + r) / 2), np.sqrt((1 - r) / 2)
+        r1, r2 = np.sqrt((1 - r) / 2), np.sqrt((1 + r) / 2)
         # mix the random vectors to get desired correlation
         x, y = o1 * (x * r1 + y * r2), o2 * (x * r1 - y * r2)
         # plot and draw
