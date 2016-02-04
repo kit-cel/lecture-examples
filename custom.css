@@ -1,4 +1,4 @@
-.reveal {
+   .reveal {
     position: absolute;
     left: 22%;
     width: 55%;
@@ -18,4 +18,8 @@ body {
 
 .prompt {
     display: none;
+}
+
+.rendered_html h2:first-child {
+    margin-top: 0em; !important
 }
