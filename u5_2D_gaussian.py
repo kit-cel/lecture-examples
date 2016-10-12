@@ -1,17 +1,15 @@
-#!/usr/bin/env python
-#  -*- coding: utf-8 -*-
+#!/usr/bin/env python3
 """
 Simulation einer 2D Normalverteilung. Gezeigt werden neben zuf.
 Realisierungen auch die Höhenlinie der Dichte für K=9.
 """
 
-from __future__ import unicode_literals, division, print_function
 from functools import partial
 
 import numpy as np
 import matplotlib as mp
-from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg
-from PyQt4 import QtGui, QtCore
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
+from PyQt5 import QtWidgets, QtCore
 
 
 class Canvas(FigureCanvasQTAgg):
@@ -27,11 +25,9 @@ class Canvas(FigureCanvasQTAgg):
         # Initialize widget and update timer
         super(Canvas, self).__init__(fig)
         self.setParent(parent)
-        self.setSizePolicy(QtGui.QSizePolicy.Expanding,
-                           QtGui.QSizePolicy.Expanding)
+        self.setSizePolicy(QtWidgets.QSizePolicy.Expanding,
+                           QtWidgets.QSizePolicy.Expanding)
         self.updateGeometry()
-        timer = QtCore.QTimer(self)
-        timer.timeout.connect(self.plot_gaussian_samples)
 
         # plot parameter defaults
         self.sigma1 = self.sigma2 = 1.0
@@ -39,20 +35,31 @@ class Canvas(FigureCanvasQTAgg):
         self.points_per_update = 100
 
         # plot data
-        self.draw_contour_line()
+        self.reset()
         self.plot_gaussian_samples()
-        timer.start(100)
+
+        draw_timer = QtCore.QTimer(self)
+        draw_timer.timeout.connect(self.plot_gaussian_samples)
+        draw_timer.start(100)
+
+        clear_timer = QtCore.QTimer(self)
+        clear_timer.timeout.connect(self.axes.clear)
+        clear_timer.start(10 * 1000)
 
     def set_param(self, name, value):
         """Update a plot parameter, clear axes"""
         setattr(self, name, value)
+        self.reset()
+
+    def reset(self):
+        """Draw the theoretical contour line"""
         self.axes.clear()
+        self.axes.set_xlim(-6, 6)
+        self.axes.set_ylim(-5, 5)
         self.draw_contour_line()
 
     def draw_contour_line(self):
         """Draw the theoretical contour line"""
-        self.axes.set_xlim(-6, 6)
-        self.axes.set_ylim(-5, 5)
         # get parameters and math functions
         o1, o2, r = self.sigma1, self.sigma2, self.rho
         sqrt, sin, cos, pi = np.sqrt, np.sin, np.cos, np.pi
@@ -72,7 +79,7 @@ class Canvas(FigureCanvasQTAgg):
         ))
         # add contour line (ellipse)
         self.axes.add_artist(mp.patches.Ellipse(
-            xy=(0, 0), width=2 * a, height=2 * b, angle=180 / pi * g,
+            xy=(0, 0), width=2 * a, height=2 * b, angle=-180 / pi * g,
             facecolor='none', edgecolor='r', zorder=2, linewidth=2
         ))
 
@@ -82,7 +89,7 @@ class Canvas(FigureCanvasQTAgg):
         # get two std norm distributed vectors
         x, y = np.random.normal(0, 1, (2, self.points_per_update))
         # scaling parameters
-        r1, r2 = np.sqrt((1 - r) / 2), np.sqrt((1 + r) / 2)
+        r1, r2 = np.sqrt((1 + r) / 2), np.sqrt((1 - r) / 2)
         # mix the random vectors to get desired correlation
         x, y = o1 * (x * r1 + y * r2), o2 * (x * r1 - y * r2)
         # plot and draw
@@ -90,11 +97,11 @@ class Canvas(FigureCanvasQTAgg):
         self.draw()
 
 
-class FigureCanvasWithControls(QtGui.QWidget):
+class FigureCanvasWithControls(QtWidgets.QWidget):
 
     def __init__(self):
         super(FigureCanvasWithControls, self).__init__()
-        layout = QtGui.QVBoxLayout(self)
+        layout = QtWidgets.QVBoxLayout(self)
 
         canvas = Canvas(self, width=5, height=4, dpi=100)
         params = (('sigma1', 0.1, 2.0, 1.0),
@@ -103,24 +110,24 @@ class FigureCanvasWithControls(QtGui.QWidget):
 
         # create a control for each figure parameter
         for name, lo, hi, default in params:
-            row = QtGui.QHBoxLayout()
+            row = QtWidgets.QHBoxLayout()
             layout.addLayout(row)
 
             # label
-            label = QtGui.QLabel(name)
+            label = QtWidgets.QLabel(name)
             label.setMinimumWidth(50)
             label.setAlignment(QtCore.Qt.AlignRight)
             row.addWidget(label, 0)
 
             # value slider
-            slider = QtGui.QSlider(QtCore.Qt.Horizontal, self)
+            slider = QtWidgets.QSlider(QtCore.Qt.Horizontal, self)
             slider.setRange(0, 200)
             slider.setSingleStep(2)
             slider.setPageStep(10)
             row.addWidget(slider, 1)
 
             # value display
-            text = QtGui.QLineEdit()
+            text = QtWidgets.QLineEdit()
             text.setReadOnly(True)
             text.setMaximumWidth(50)
             text.setFocusPolicy(QtCore.Qt.NoFocus)
@@ -142,7 +149,7 @@ class FigureCanvasWithControls(QtGui.QWidget):
 
 if __name__ == '__main__':
     import sys
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     win = FigureCanvasWithControls()
     win.show()
     sys.exit(app.exec_())
