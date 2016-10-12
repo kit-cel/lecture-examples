@@ -1,14 +1,15 @@
 WT-Übung
 ========
 
-Die hier abgelegten Python-Skripte werden im Laufe der Übung zur [Vorlesung Wahrscheinlichkeitstheorie](http://www.cel.kit.edu/lehre_1503.php) an der Fakultät für Elektrotechnik und Informationstechnik des Karlsruhe Institute of Technology (KIT) gezeigt. Die zugehörigen Aufgabenblätter finden sich im [ILIAS-Kurs zur Vorlesung](https://ilias.studium.kit.edu/goto_produktiv_crs_478042.html).
+Die hier abgelegten Python-Skripte werden im Laufe der Übung zur [Vorlesung Wahrscheinlichkeitstheorie](http://www.cel.kit.edu/lehre_1503.php) an der Fakultät für Elektrotechnik und Informationstechnik des Karlsruhe Institute of Technology (KIT) gezeigt. Die zugehörigen Aufgabenblätter finden sich im [ILIAS-Kurs zur Vorlesung](https://ilias.studium.kit.edu/goto.php?target=crs_580128&client_id=produktiv).
 
 Abhängigkeiten
 --------------
-- python >= 3
+- Python >= 3.4
 - jupyter notebook
 - numpy/scipy
 - matplotlib
+- PyQt > 5
 
 Verwendung
 ----------
