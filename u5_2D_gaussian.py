@@ -43,8 +43,8 @@ class Canvas(FigureCanvasQTAgg):
         draw_timer.start(100)
 
         clear_timer = QtCore.QTimer(self)
-        clear_timer.timeout.connect(self.axes.clear)
-        clear_timer.start(10 * 1000)
+        clear_timer.timeout.connect(self.reset)
+        clear_timer.start(20 * 1000)
 
     def set_param(self, name, value):
         """Update a plot parameter, clear axes"""
@@ -82,6 +82,7 @@ class Canvas(FigureCanvasQTAgg):
             xy=(0, 0), width=2 * a, height=2 * b, angle=-180 / pi * g,
             facecolor='none', edgecolor='r', zorder=2, linewidth=2
         ))
+        self.draw()
 
     def plot_gaussian_samples(self):
         """Put some samples of the current distribution on the axes"""
