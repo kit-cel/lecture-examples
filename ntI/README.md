@@ -5,7 +5,7 @@ Die hier abgelegten Python- und MATLAB Skripte werden im Laufe der Vorlesung und
 
 Abhängigkeiten Python
 ---------------------
-- python >= 3
+- python >= 3.5
 - jupyter notebook
 - numpy/scipy
 - matplotlib
