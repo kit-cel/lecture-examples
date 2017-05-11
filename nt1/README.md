@@ -21,3 +21,7 @@ Die verwendete Programmiersprache, [Python](http://www.python.org), ist bei gän
 Interaktives Ausführen der Python Skripte online im Webbrowser ohne Installation
 --------------------------------------------------------------------------------
 [![Binder](http://mybinder.org/badge.svg)](http://mybinder.org/repo/kit-cel/lecture-examples)
+
+Betrachten der Skripte mit vorgeneriertem Output (statisch)
+-----------------------------------------------------------
+[Jupyter notebook Viewer](https://nbviewer.jupyter.org/github/KIT-CEL/lecture-examples/)
