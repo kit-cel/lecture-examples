@@ -13,6 +13,7 @@ dependencies:
   - certifi=2019.9.11
   - cvxcanon=0.1.1
   - cvxpy=1.0.6
+  - cycler=0.10.0
   - dbus=1.13.6
   - decorator=4.4.0
   - defusedxml=0.6.0
@@ -41,6 +42,7 @@ dependencies:
   - jupyter_client=5.3.3
   - jupyter_console=6.0.0
   - jupyter_core=4.5.0
+  - kiwisolver=1.1.0
   - lapack=3.6.1
   - libedit=3.1.20181209
   - libffi=3.2.1
@@ -55,6 +57,7 @@ dependencies:
   - libxcb=1.13
   - libxml2=2.9.9
   - markupsafe=1.1.1
+  - matplotlib=3.1.1
   - mistune=0.8.4
   - mkl=2019.4
   - mkl-service=2.3.0
@@ -79,10 +82,12 @@ dependencies:
   - prompt_toolkit=2.0.9
   - ptyprocess=0.6.0
   - pygments=2.4.2
+  - pyparsing=2.4.2
   - pyqt=5.9.2
   - pyrsistent=0.15.4
   - python=3.6.9
   - python-dateutil=2.8.0
+  - pytz=2019.3
   - pyzmq=18.1.0
   - qt=5.9.7
   - qtconsole=4.5.5
