@@ -8,10 +8,14 @@ Python Dependencies
 ---------------------
 - python >= 3.5
 - jupyter notebook
-- numpy/scipy
+- numpy
+- scipy version <= 1.2.1
 - matplotlib
+- lapack
 - cvxopt
+- cvxpy
 
+cvxpy has sometimes issues of working with newer versions of scipy and will produce cryptic error messages. It is therefore best to install scipy version 1.2.1. Also, it is necessary to install lapack, which doesn't come with the main anaconda channel. If possible, use the environment.yml (see below).
 
 Usage of Python Notebooks
 -------------------------
