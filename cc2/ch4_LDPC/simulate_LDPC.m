@@ -1,3 +1,4 @@
+function simulate_LDPC
 % parameters of regular LDPC code
 dv = 3;
 dc = 6;
@@ -53,7 +54,8 @@ for frame = 1:frames
 end
 BER = errors / frame / n;
 fprintf('Es/N0 = %1.2f: BER = %1.4g\n',esno_dB, BER);
-
+end
+				
 % LDPC decoder using the full (simplified) update rule, inner loop
 % completely vectorized but still relatively slow
 function xh = decode_LDPC(L, H, iterations)
