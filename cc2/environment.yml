@@ -1,7 +1,7 @@
 name: lecture_CC2
 channels:
-  - conda-forge
   - cvxgrp
+  - conda-forge
   - defaults
 dependencies:
   - _libgcc_mutex=0.1
@@ -9,8 +9,8 @@ dependencies:
   - backcall=0.1.0
   - blas=1.0
   - bleach=3.1.0
-  - ca-certificates=2019.8.28
-  - certifi=2019.9.11
+  - ca-certificates=2019.11.28
+  - certifi=2019.11.28
   - cvxcanon=0.1.1
   - cvxpy=1.0.6
   - cycler=0.10.0
@@ -81,6 +81,7 @@ dependencies:
   - prometheus_client=0.7.1
   - prompt_toolkit=2.0.9
   - ptyprocess=0.6.0
+  - pulp=1.6.8
   - pygments=2.4.2
   - pyparsing=2.4.2
   - pyqt=5.9.2
@@ -112,4 +113,5 @@ dependencies:
   - xz=5.2.4
   - zeromq=4.3.1
   - zlib=1.2.11
+prefix: /home/schmalen/anaconda3/envs/lecture_CC2
 
