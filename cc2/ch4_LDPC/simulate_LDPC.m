@@ -80,18 +80,19 @@ function xh = decode_LDPC(L, H, iterations)
         CtoV_sign = sparse(row_i, col_i, totalsign_VtoC(row_i)) .* VtoC_sign;
         CtoV = CtoV_sign .* CtoV_abs;        
        
-        % stopping criterion, all parity checks are fulfilled
-        if all(totalsign_VtoC > 0)
-            break;
-        end
         
         % compute variable to check node messages, pretty simple
         CtoV_sum = sum(CtoV,1);
         VtoC = sparse(row_i, col_i, L(col_i) + CtoV_sum(col_i)) - CtoV;        
+
+        % stopping criterion, all parity checks are fulfilled
+        L_total = CtoV_sum + L;
+        if all(L_total > 0)
+            break;
+        end       
     end
     
-    % compute L_total
-    L_total = sum(CtoV,1) + L;
+    % binary decision    
     xh = L_total < 0;
 end
 
