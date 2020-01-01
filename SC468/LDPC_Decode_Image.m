@@ -6,6 +6,8 @@ H = read_alist_file(codefile);
 % generate encoder object (takes some time to initialize)
 henc = comm.LDPCEncoder(H);
 
+% mark errnoeous pixels by red color
+mark_erroneous = true;
 
 % specify Es/N0 at which simulation takes place
 esno_dB = 1;
@@ -33,6 +35,12 @@ sigman = sqrt(0.5*10.^(-esno_dB/10));
 
 noisy = bpsk + sigman*randn(size(bpsk));
 
+if mark_erroneous == true
+    colormap_decision = [1 1 1; 0,0,0; 1 0 0];
+else
+    colormap_decision = [1 1 1; 0,0,0];
+end
+    
 if strcmpi(channel_output,'soft')
     Lc = 4*10^(esno_dB/10);
     LLR = Lc * noisy;    
@@ -46,18 +54,30 @@ end
 
 
 figure(1);
-subplot(2,5,1);
+ax(1) = subplot(2,5,1);
 imagesc(reshape(bpsk, 128,[])');
-colormap(gray);
+colormap(ax(1), gray);
 set(gca,'xtick',[]); set(gca,'ytick',[]);
 axis equal;
 xlim([1,128]);
 ylim([1,numel(bpsk)/128])
 title('Encoded');
 
-subplot(2,5,2);
-imagesc(reshape(LLR, 128,[])');
-colormap(gray);
+ax(2) = subplot(2,5,2);
+
+if strcmpi(channel_output,'hard')
+    hard_decision = double(LLR < 0);
+    hard_decision(hard_decision(:) ~= x) = 2;   % mark errors
+    imagesc(reshape(hard_decision, 128,[])');
+    if max(hard_decision(:)) > 1
+        colormap(ax(2), colormap_decision);
+    else
+        colormap(ax(2), [1,1,1;0,0,0]);
+    end
+else
+    imagesc(reshape(LLR, 128,[])');
+    colormap(ax(2), gray);
+end
 set(gca,'xtick',[]); set(gca,'ytick',[]);
 axis equal;
 xlim([1,128]);
@@ -66,16 +86,21 @@ title('Channel output');
 
 iti = 3;
 for iter = [1 2 3 4 5 10 15 20]
-    subplot(2,5,iti);
+    ax(iti) = subplot(2,5,iti);
     % generate decoder object, built-in MATLAB decoder
     %hdec = comm.LDPCDecoder('ParityCheckMatrix',H,'OutputValue','Whole codeword','MaximumIterationCount',iter);
     
     % use own decoder
     decoded = decode_LDPC(LLR(:)', H, iter);
-    
+    decoded = double(decoded);       % transform to double array
+    decoded(decoded(:) ~= x) = 2;   % mark errors as 2
    
-    imagesc(reshape(1-decoded, 128,[])');
-    colormap(gray);
+    imagesc(reshape(decoded, 128,[])');
+    if max(decoded(:)) > 1
+        colormap(ax(iti), colormap_decision);
+    else
+        colormap(ax(iti), [1,1,1;0,0,0]);
+    end
     set(gca,'xtick',[]); set(gca,'ytick',[]);
     axis equal;
     xlim([1,128]);
@@ -116,11 +141,12 @@ function xh = decode_LDPC(L, H, iterations)
 
         % stopping criterion, all parity checks are fulfilled
         L_total = CtoV_sum + L;
-        if all(L_total > 0)
+        xh = L_total < 0;
+        if all(mod(H*xh(:),2) == 0)
             break;
         end       
     end
     
     % binary decision    
-    xh = L_total < 0;
+    
 end

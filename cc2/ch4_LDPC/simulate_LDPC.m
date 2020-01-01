@@ -23,7 +23,7 @@ Lc = 4*10^(esno_dB/10);
 
 
 % generate parity-check matrix of regular LDPC code
-H = generate_Gallager(3, 15, 30000);
+H = generate_Gallager(dv, dc, 30000);
 
 n = size(H,2);
 
@@ -87,13 +87,15 @@ function xh = decode_LDPC(L, H, iterations)
 
         % stopping criterion, all parity checks are fulfilled
         L_total = CtoV_sum + L;
-        if all(L_total > 0)
+
+        % binary decision
+        xh = L_total < 0;
+        if all(mod(H*xh(:),2) == 0)
+            % all parity-checks fulfilled?
             break;
         end       
     end
     
-    % binary decision    
-    xh = L_total < 0;
 end
 
 
