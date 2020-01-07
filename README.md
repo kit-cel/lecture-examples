@@ -8,6 +8,7 @@ This repository contains small examples and simulations used in our lectures. Th
 - `sigNT`: Signalverarbeitung in der Nachrichtentechnik (Signal processing in communications, taught in German)
 - `mloc`: Machine Learning and Optimization in Communications (taught in English)
 - `cc2`: Channel Coding 2 - Advanced methods (taught in English)
+- `SC468`: Short Course SC468 at the Optical Fiber Communication Conference (OFC, taught in English)
 
 Dependencies
 ------------
