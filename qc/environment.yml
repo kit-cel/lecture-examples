@@ -1,0 +1,10 @@
+name: Lecture_QC
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.7
+  - jupyter
+  - numpy
+  - librosa
+
