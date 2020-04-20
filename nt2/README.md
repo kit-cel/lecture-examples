@@ -1,4 +1,4 @@
-NT2-Übung
+NT2
 ========
 
 Die hier abgelegten Python-Skripte werden im Laufe der Vorlesung und Übung zur [Vorlesung Nachrichtentechnik II](http://www.cel.kit.edu/lehre_1505.php) an der Fakultät für Elektrotechnik und Informationstechnik des Karlsruhe Institute of Technology (KIT) gezeigt. Die zugehörigen Folien finden sich im [ILIAS-Kurs zur Vorlesung](https://ilias.studium.kit.edu/goto_produktiv_crs_456654.html).
