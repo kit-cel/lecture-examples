@@ -30,7 +30,7 @@ Licensing and Reuse
 This code is licensed under the GPLv2 license. 
 
 If you use, in any way, parts of this code in your own research or teaching that results in publications, please cite it as follows:<br>
-* L. Schmalen and M. L. Schmid, "Machine Learning and Optimization in Communications - Lecture Examples," available online at http://www.github.org/KIT-CEL/lecture-examples/, 2019
+* L. Schmalen, M. L. Schmid, and B. Geiger, "Machine Learning and Optimization in Communications - Lecture Examples," available online at http://www.github.org/KIT-CEL/lecture-examples/, 2019
 
 In case you have questions, comments, or suggestions regarding this code, please contact Laurent Schmalen (Laurent.Schmalen@kit.edu).
 
