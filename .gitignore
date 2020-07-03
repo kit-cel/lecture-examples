@@ -57,3 +57,7 @@ target/
 .ipynb_checkpoints/
 *.slides.html
 reveal.js/
+
+
+# MNIST dataset
+mloc/ch3_Deep_Learning/pytorch/files/
