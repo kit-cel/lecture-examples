@@ -11,14 +11,14 @@ gf_elements = gf(0:(q-1), 4, alpha.prim_poly);
 
 
 
-% correctable errors of the RS code
-t = 3;
+% correctable erasures of the RS code
+t = 6;
 
 
 
 % Construct primitive GRS code (i.e., q = n-1)
 n = q-1;
-k = n - 2*t;  % k is immediately given as the GRS code is MDS (k = n-d+1 and d = 2*t+1)
+k = n - t;  % k is immediately given as the GRS code is MDS (k = n-d+1 and d = t+1)
 
 % use all q-1 disting elements of GF(q) as code locators
 gamma = alpha.^[0:(n-1)];
@@ -61,22 +61,21 @@ u = gf_elements(randi(q,1,k));
 % encode
 x = u*G;
 
-% generate error patterns
-% number of errors
-E = 3;
+% generate erasures patterns
+% number of erasures
+E = 6;
 if E > t
     warning('number of errors exceeds the correction capabilities of the code');
 end
 
-% set of error positions
-J = randperm(n,E);
+% set of erased positions
+E = randperm(n,E);
 
-% construct error vector (random elements)
-e = gf(zeros(1,n),m,alpha.prim_poly);
-e(J) = gf_elements(randi(q,1,E));
+% generate received codeword
+y = x;
 
-% generate noisy codeword
-y = x + e;
+% erase positions (set to zero in received codeword)
+y(E) = gf(0, m, alpha.prim_poly);
 
 
 
@@ -85,47 +84,25 @@ y = x + e;
 S = y * H';
 
 if all(S==0)
-    fprintf('No errors, aborting');
+    fprintf('No erasures, detected, filling erased positions with zeros');    
     return;
 end
 
-% generate matrix Stilde (try all possible tau, starting from the largest)
-for tau = t:-1:1
-    
-    Stilde = [];
-    for j = 1:tau
-        Stilde = [Stilde; S([tau:-1:1]+(j-1))];
-    end
-    sv = -S([(tau+1):2*tau])';
 
-    % if matrix is invertible, invert
-    if rank(Stilde) == tau
-        Lambda = inv(Stilde)*sv;
-        break;
-    end
+% construct error locator polynomial, which is known from the erased
+% positions
+Lambda_poly = gf(1, m, alpha.prim_poly);
+
+for j = 1:numel(E)
+    Lambda_poly = conv(Lambda_poly, [gamma(E(j)), 1]);
 end
-
-% construct error locator polynomial
-Lambda_poly = [fliplr(Lambda'), 1];
-
-error_pos = [];
-% find roots of error locator polynomial, by trying out all possible nonzero GF
-% elements
-for j=1:n
-    if polyval(Lambda_poly, gf(j,m,alpha.prim_poly)) == 0
-        error_locator = 1/gf(j,m,alpha.prim_poly);
-        % find code locator that corresponds to error locator
-        error_pos(end+1) = find(gamma == error_locator,1);
-    end
-end
-
 
 
 
 % find error values using Forney's method
 % first, compute the error evaluator polynomial
-Tm = gf(zeros(tau, tau+1), m, alpha.prim_poly);
-for j=1:tau
+Tm = gf(zeros(numel(E), numel(E)+1), m, alpha.prim_poly);
+for j=1:numel(E)
     Tm(j, j:-1:1) = S(1:j);
 end
 Omega = Tm*fliplr(Lambda_poly)';
@@ -139,16 +116,13 @@ Omega_poly = fliplr(Omega');
 % as additions in the Galois field
 derLambda_poly = Lambda_poly(1:end-1) .* mod([(prod(size(Lambda_poly))-1):-1:1],2);
 
-e_hatF = gf(zeros(1,n), m, alpha.prim_poly);
-for j=1:numel(error_pos)
-    e_hatF(error_pos(j)) = - gamma(error_pos(j)) * polyval(Omega_poly, 1/gamma(error_pos(j))) / polyval(derLambda_poly, 1/gamma(error_pos(j))) / v(error_pos(j));
+% carry out corrections directly in the received codeword y
+for j=1:numel(E)
+    y(E(j)) = - gamma(E(j)) * polyval(Omega_poly, 1/gamma(E(j))) / polyval(derLambda_poly, 1/gamma(E(j))) / v(E(j));
 end
 
-% reconstruct codeword
-x_hatF = y - e_hatF;
-
-if all(x_hatF == x)
-    fprintf('Decoding using Forney''s algorithm successful!\n');
+if all(y == x)
+    fprintf('Erasure recovery using Forney''s algorithm successful!\n');
 end
 
 
