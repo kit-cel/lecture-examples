@@ -35,8 +35,9 @@ gen_poly = [1];
 for j=1:size(Mpoly_list)
     gen_poly = mod(conv(gen_poly, Mpoly_list(j,:)), 2);
 end
-% remove leading zeros
-gen_poly = gen_poly(find(gen_poly > 0, 1, 'first'):end);
+% remove leading zeros and flip, such that the g_0 is the first entry
+% gen_poly(1)
+gen_poly = fliplr(gen_poly(find(gen_poly > 0, 1, 'first'):end));
 
 % dimension of BCH code is obtained from degree of polynomial
 k = n - (numel(gen_poly) - 1);  % number of elements in polynomial vector is degree+1
@@ -50,9 +51,9 @@ u = randi(2,1,k) - 1;
 % systematic encoding, compute remainder after polynomial division of Z^(n-k) *
 % u(Z) by g(Z)
 % ATTENTION: gfdeconv uses a different representation of polynomials
-[q,r] = gfdeconv(fliplr([u,zeros(1,n-k)]), fliplr(gen_poly));
+[q,r] = gfdeconv([zeros(1,n-k), u], gen_poly);
 
-x = [u,zeros(1,n-k-numel(r)), fliplr(r)];
+x = [r,zeros(1,n-k-numel(r)), u];
 
 
 % cross check if x is actually a codeword
@@ -60,7 +61,7 @@ x = [u,zeros(1,n-k-numel(r)), fliplr(r)];
 for j=1:2*t
     temp = gf(0, m, alpha.prim_poly);
     for l = 1:n
-        temp = temp + x(l) * alpha^(j * (n-l));
+        temp = temp + x(l) * alpha^(j * (l-1));
     end
     if temp ~= 0
         error('x is not a codeword of the BCH code');
@@ -93,7 +94,7 @@ S = gf(zeros(1,2*t), m, alpha.prim_poly);
 for j=1:2*t
     temp = gf(0, m, alpha.prim_poly);
     for l = 1:n
-        temp = temp + y(l) * alpha^(j * (n-l));
+        temp = temp + y(l) * alpha^(j * (l-1));
     end
     S(j) = temp;
 end
@@ -131,7 +132,7 @@ for j=1:n
         
         % position of error is immediately obtained from error locator,
         % attention, we need to flip the positions
-        error_pos(end+1) = n-log(error_locator);
+        error_pos(end+1) = 1+log(error_locator);
     end
 end
 
