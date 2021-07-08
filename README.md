@@ -25,3 +25,5 @@ Some examples may require additional Python packages.
 Usage / Installation
 --------------------
 The programming language used here is [Python](http://www.python.org). For novice users we recommend installing the Python distribution [Anaconda](https://www.anaconda.com) which is availble for Windows, Linux and OSX. Make sure to download the *Python 3.7* edition.
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/funnym0nk3y/lecture-examples/master?urlpath=lab)
