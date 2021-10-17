@@ -1,7 +1,7 @@
-Example scripts for "Channel Coding 2 - Advanced Methods" lecture
+Example scripts for "Channel Coding - Graph-based Codes" lecture
 =================================================================================
 
-This repository contains examples and simulations used in the lecture [Channel Coding 2 - Advanced Methods](http://www.cel.kit.edu/lehre_1703.php) of the faculty for electrical engineering and information technology (ETIT) at Karlsruhe Institute of Technology (KIT). The corresponding slides and lecture notes can be found in ILIAS (only available for enrolled students).
+This repository contains examples and simulations used in the lecture [Channel Coding - Graph-based Codes](http://www.cel.kit.edu/lehre_2701.php) of the faculty for electrical engineering and information technology (ETIT) at Karlsruhe Institute of Technology (KIT). The corresponding slides and lecture notes can be found in ILIAS (only available for enrolled students).
 
 
 Python Dependencies
