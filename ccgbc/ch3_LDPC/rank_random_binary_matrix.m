@@ -1,3 +1,10 @@
+% This code is provided as supplementary material of the lecture Channel Coding - Graph Based Codes (CC-GBC)
+%
+% This code illustrates
+%
+%     Rank of random parity-check matrix
+
+
 % size of matrix
 m = 10;
 n = 20;

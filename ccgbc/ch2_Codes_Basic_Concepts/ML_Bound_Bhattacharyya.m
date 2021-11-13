@@ -1,4 +1,4 @@
-% This code is provided as supplementary material of the lecture Machine Learning and Optimization in Communications (MLOC).
+% This code is provided as supplementary material of the lecture Channel Coding - Graph Based Codes (CC-GBC)
 %
 % This code illustrates
 %
