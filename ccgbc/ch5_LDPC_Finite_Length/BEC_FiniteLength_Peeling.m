@@ -1,12 +1,14 @@
 function simulate
 
+remove_4cycles = true;
+
 dv = 3;
 dc = 6;
 n = 200;
 
 eps_range = linspace(0.1,0.43, 15);
 
-epochs = linspace(20000, 500, numel(eps_range));
+epochs = linspace(200, 200, numel(eps_range));
 
 
 frames = 3000;
@@ -19,6 +21,9 @@ for epsilon = eps_range
     num_err = 0;
     for ei = 1:epochs(epsi)
         H = getRegularH(n, dv, dc);
+        if remove_4cycles
+            [H,~] = remove_4cycle(H);
+        end
         for fi = 1:frames
             erasures = find(rand(1,n) < epsilon);
             E = Peeling_Decoder(H, erasures);
