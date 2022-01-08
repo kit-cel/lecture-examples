@@ -36,7 +36,7 @@ while ~abort
         end
     end
     trials = trials + 1;
-    if trials > 65
+    if trials > 100
         success = false;
         abort = true;
     end

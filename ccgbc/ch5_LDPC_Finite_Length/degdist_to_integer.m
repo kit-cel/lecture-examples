@@ -8,8 +8,8 @@ function [new_dv, num_dv, new_dc, num_dc] = degdist_to_integer(dv, a_dv, dc, a_d
     degprob = optimproblem;
     
     
-    num_dc_var_slack = optimvar('num_dc_var_slack', max(dc), 'Type','integer','LowerBound',0,'UpperBound',M);     
-    num_dv_var_slack = optimvar('num_dv_var_slack', max(dv), 'Type','integer','LowerBound',0,'UpperBound',N);     
+    num_dc_var_slack = optimvar('num_dc_var_slack', max(dc),'LowerBound',0);     
+    num_dv_var_slack = optimvar('num_dv_var_slack', max(dv),'LowerBound',0);     
     
     cost = sum(num_dv_var_slack) + sum(num_dc_var_slack);
     degprob.Objective = cost;
