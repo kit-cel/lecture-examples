@@ -1,4 +1,4 @@
-% This code is provided as supplementary material of the lecture Channel Coding: Algebraic Methods
+%% This code is provided as supplementary material of the lecture Channel Coding: Algebraic Methods
 % given by Laurent Schmalen at Karlsruhe Institute of Technology (KIT)
 %
 % This code illustrates:
@@ -72,7 +72,7 @@ x = u*G;
 
 % generate error patterns
 % number of errors
-E = 2;
+E = 3;
 if E > t
     warning('number of errors exceeds the correction capabilities of the code');
 end
@@ -94,22 +94,22 @@ z = y ./ v_prime;
 % First step, setup system of equations 
 EQ_system = gf([], m, alpha.prim_poly);
 for i = 1:n
-    EQ_system(i,:) = [z(i)*gamma(i).^[1:t], gamma(i).^[0:(t+k-1)]];
+    EQ_system(i,:) = [z(i)*gamma(i).^[0:(t-1)], gamma(i).^[0:(t+k-1)]];
 end
 
 if rank(EQ_system) == n
     % solve system of equations directly as it is full rank
-    EQ_sol = EQ_system \ z(:);
+    EQ_sol = EQ_system \ (z(:) .* gamma(:).^t);
 else
     % solve using Gaussian elimination, assume remaining entries of the
     % polynomials are zero
-    [A, idx] = gfrref([EQ_system, z(:)]);
+    [A, idx] = gfrref([EQ_system, (z(:).*gamma(:).^t)]);
     EQ_sol = gf(zeros(n,1), m, alpha.prim_poly);
-    EQ_sol(idx) = A(idx,end);
+    EQ_sol(idx) = A(1:numel(idx),end);
 end
 
 % extract polynomials E and Q
-E_poly = [fliplr(EQ_sol(1:t)'), 1];
+E_poly = [1,fliplr(EQ_sol(1:t)')];
 Q_poly = fliplr(EQ_sol((t+1):end)');
 
 % remove leading non-zero elements for E, if we have less than t errors
