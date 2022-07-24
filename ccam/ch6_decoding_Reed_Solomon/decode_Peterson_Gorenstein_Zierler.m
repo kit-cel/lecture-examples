@@ -1,3 +1,14 @@
+% This code is provided as supplementary material of the lecture Channel Coding: Algebraic Methods
+% given by Laurent Schmalen at Karlsruhe Institute of Technology (KIT)
+%
+% This code illustrates:
+%
+% * Construction and encoding of GRS codes
+% * Decoding of GRS codes using the Peterson-Gorenstein-Zierler decoding algorithm
+%
+% This code (and other examples) is available on https://github.com/kit-cel/lecture-examples
+%
+
 %% construct GF(2^4) using primitive polynomial Z^4 + Z^3 + 1
 % primitive element alpha
 alpha = gf(2,4,'D^4+D^3+1');
