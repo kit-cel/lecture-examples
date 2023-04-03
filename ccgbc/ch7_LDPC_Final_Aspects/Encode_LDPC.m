@@ -62,5 +62,51 @@ else
     Tur = mod(T11i*T12*T22i,2);
     Ti = [T11i, Tur; Tz, T22i];
 end
+end
+
+function [T,A,B,E,C,D,colintl] = greedy_upper_triangulate_forenc(H)
+% carries out greedy upper triangulation as described in Appendix A.2 of Richardson, Urbanke, "Moder Coding Theory"   
+resdegrees = full(sum(H,1));
+resdegrees(resdegrees==0) = 9999;
+n = size(H,2);
+k = size(H,2) - size(H,1);
+
+Hg = H;
+t=0;
+g=0;
+
+colintl = 1:size(H,2);
+while t ~= n-k-g
+    % EXTEND
+    idx = find(resdegrees==min(resdegrees));
+    rancol = idx(randi(length(idx)));
+    rs = find(Hg(:,rancol))';
+    rs = intersect(rs, (t+1):(n-k-g));
+    Hg(:,[t+1,rancol]) = Hg(:,[rancol,t+1]);    
+    Hg([t+1;rs(1)],:) = Hg([rs(1);t+1],:);
+    
+    colintl([t+1,rancol]) = colintl([rancol,t+1]);
+    
+    t = t+1;
+    if min(resdegrees) ~= 1
+        % CHOOSE
+        % increase gap
+        Hg([n-k-g-[0:(length(rs)-2)], rs(2:end)],:) = Hg([rs(2:end), n-k-g-[0:(length(rs)-2)]],:);        
+        g = g + length(rs) - 1;        
+    end
+    % update residual degreess
+    resdegrees = full(sum(Hg((t+1):(n-k-g),:),1));
+    resdegrees(1:(t+1)) = 9999;
+    resdegrees(resdegrees == 0) = 9999;
+end
+
+
+Ts = size(H,1)-g;
+T = Hg(1:Ts,1:Ts);
+A = Hg(1:Ts,(Ts+1):(Ts+g));
+B = Hg(1:Ts, (Ts+g+1):end);
+E = Hg((Ts+1):end,1:Ts);
+C = Hg((Ts+1):end, (Ts+1):(Ts+g));
+D = Hg((Ts+1):end, (Ts+g+1):end);
 
 end
