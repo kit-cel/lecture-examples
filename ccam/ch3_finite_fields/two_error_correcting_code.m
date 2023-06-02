@@ -66,7 +66,7 @@ x = mod(u*G,2);
 fprintf('Transmitted codeword: ['); fprintf('%d ', x(1:end-1)); fprintf('%d]\n',x(end));
 
 %% add errors
-errors = 2;
+errors = 3;
 
 error_pos = randperm(n,errors);
 x(error_pos) = mod(x(error_pos) + 1,2);
@@ -92,7 +92,11 @@ else
                 error_locations(end+1) = i;
             end
         end
-        fprintf('Two errors detected at positions %d and %d\n', error_locations(1), error_locations(2));
+        if numel(error_locations) == 2
+            fprintf('Two errors detected at positions %d and %d\n', error_locations(1), error_locations(2));
+        else
+            fprintf('Could not detect errors\n');
+        end
     end
     x(error_locations) = mod(x(error_locations)+1,2);
 end
