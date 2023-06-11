@@ -137,28 +137,3 @@ end
 
 
 
-
-
-
-
-%% find error values (direct method, using matrix inversion, may run into issues as matrix is not invertible)
-Em = [];
-for j=1:prod(size(S))
-    Em = [Em; v(error_pos) .* gamma(error_pos).^(j-1)];
-end
-
-% Solve system of equations using Gaussian elimination
-error_val = Em \ S';
-
-% estimate error vector
-e_hat = gf(zeros(1,n), m, alpha.prim_poly);
-e_hat(error_pos) = error_val;
-
-
-% reconstruct codeword
-x_hat = y - e_hat;
-
-if all(x_hat == x)
-    fprintf('Decoding successful!\n');
-end
-
