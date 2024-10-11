@@ -11,6 +11,7 @@
 %% construct GF(2^4) using primitive polynomial Z^4 + Z^3 + 1
 % primitive element alpha
 alpha = gf(2,4,'D^4+D^3+1');
+gftable(alpha.m, alpha.prim_poly);
 
 m = alpha.m;
 q = 2^m;
@@ -66,7 +67,7 @@ x = mod(u*G,2);
 fprintf('Transmitted codeword: ['); fprintf('%d ', x(1:end-1)); fprintf('%d]\n',x(end));
 
 %% add errors
-errors = 3;
+errors = 2;
 
 error_pos = randperm(n,errors);
 x(error_pos) = mod(x(error_pos) + 1,2);
@@ -79,6 +80,8 @@ S = H_gf*x(:);
 % check if only one error
 if S(1) == 0 && S(2) == 0
     fprintf('No errors detected\n');
+elseif S(1) == 0
+    fprintf('Could not detect errors\n');
 else
     if S(1).^3 == S(2)
         error_locations = log(S(1)) + 1;
@@ -96,10 +99,12 @@ else
             fprintf('Two errors detected at positions %d and %d\n', error_locations(1), error_locations(2));
         else
             fprintf('Could not detect errors\n');
+            return;
         end
     end
     x(error_locations) = mod(x(error_locations)+1,2);
+    fprintf('Corrected codeword:   ['); fprintf('%d ', x(1:end-1)); fprintf('%d]\n',x(end));
 end
-fprintf('Corrected codeword:   ['); fprintf('%d ', x(1:end-1)); fprintf('%d]\n',x(end));
+
 
 % 
