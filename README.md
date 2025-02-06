@@ -10,6 +10,7 @@ This repository contains small examples and simulations used in our lectures. Th
 - `qc`: Quellencodierung (Source coding, taught in German, examples in English)
 - `ccam`: Channel Coding - Algebraic Methods (taugh in English)
 - `ccgbc`: Channel Coding - Graph-based Codes (taught in English)
+- `ait`: Applied Information Theory (taught in English; former Angewandte Informationstheorie, taught in German)
 - `SC468`: Short Course SC468 at the Optical Fiber Communication Conference (OFC, taught in English)
 
 Dependencies
