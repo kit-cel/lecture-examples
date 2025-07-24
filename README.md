@@ -2,6 +2,7 @@ CEL Lecture Examples
 ====================
 
 This repository contains small examples and simulations used in our lectures. The different folders contain examples of the different lectures we offer:
+- `gdue`: Grundlagen der Datenübvertragung (Fundamental of digital communications, taught in German)
 - `nt1`: Nachrichtentechnik I (Digital communications I, taught in German)
 - `nt2`: Nachrichtentechnik II (Digital communications II, taught in German)
 - `wt`: Wahrscheinlichkeitstheorie (Probability theory, taught in German)
