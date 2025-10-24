@@ -1,8 +1,8 @@
-% This code is provided as supplementary material of the lecture Machine Learning and Optimization in Communications (MLOC).
+% This code is provided as supplementary material of the lecture Channel Coding: Graph-based Codes.
 %
 % This code illustrates
 %
-%     Calculating the channel capacity using convex optimizatino
+%     Calculating the channel capacity using convex optimization
 %     ATTENTION: in order to run this code, it is advised that you to have CVX installed.
 %     You can get it (Linux/Windows/macOS) at http://cvxr.com
 
