@@ -61,3 +61,7 @@ reveal.js/
 
 # MNIST dataset
 mloc/ch3_Deep_Learning/pytorch/files/
+
+# temporary files from uv
+**/pyproject.toml
+**/uv.lock
