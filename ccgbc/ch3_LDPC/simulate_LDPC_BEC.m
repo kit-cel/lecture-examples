@@ -7,22 +7,26 @@ dc = 6;
 epsilon = 0.2;
 
 % number of frames to simulate
-frames = 100;
+frames = 10000;
 
 
 % decoding iterations
 iterations = 50;
 
-% generate parity-check matrix of regular LDPC code
-H = generate_Gallager(dv, dc, 48);
+% specify size of code
+n = 48;
 
-n = size(H,2);
 
 % simulate all-zero codeword
 x = zeros(1,n);
 
 errors = 0;
 for frame = 1:frames
+    % generate parity-check matrix (PCM) of regular LDPC code
+    % for each frame we generate a new PCM as we want to know the average
+    % performance of the code over all parity-check matrices
+    H = generate_Gallager(dv, dc, 48);
+
     % erasure channel, first map to bipolar and map to very large value as
     % approximation to infinite LLR
     y = (1 - 2*x) * 9999;           
@@ -56,14 +60,14 @@ function xh = decode_LDPC_BEC_nosparse(L, H, iterations)
         VtoC_sign = mysign(VtoC);
         VtoC_abs = abs(VtoC);
         
-        phiVtoC = phifun(VtoC_abs/2 + (1-H).*9e9);  % mask out zero entries
+        phiVtoC = phifun(VtoC_abs + (1-H).*9e9);  % mask out zero entries
         phiVtoC_sum = sum(phiVtoC,2);
         
         % multiply signs
         [tri,~,values] = find(VtoC_sign);
         totalsign_VtoC = accumarray(tri,values,[],@prod);
        
-        CtoV_abs =  phifun((repmat(phiVtoC_sum, 1, n).*H - phiVtoC)/2 + (1-H).*9e9);
+        CtoV_abs =  phifun((repmat(phiVtoC_sum, 1, n).*H - phiVtoC) + (1-H).*9e9);
         CtoV_sign = repmat(totalsign_VtoC, 1, n) .* VtoC_sign;
         CtoV = CtoV_sign .* CtoV_abs;        
        
@@ -90,7 +94,7 @@ end
 
 
 function y = phifun(x)
-    y = log(coth(x));
+    y = log(coth(x/2));
     y(isinf(y)) = 9e9;
 end
 
