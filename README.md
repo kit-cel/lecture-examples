@@ -8,6 +8,7 @@ This repository contains small examples and simulations used in our lectures. Th
 - `wt`: Wahrscheinlichkeitstheorie (Probability theory, taught in German)
 - `sigNT`: Signalverarbeitung in der Nachrichtentechnik (Signal processing in communications, taught in German)
 - `mloc`: Machine Learning and Optimization in Communications (taught in English)
+- `cas`: Coding of Audiovisual Signals (taught in English; former Quellencodierung, taught in German)
 - `qc`: Quellencodierung (Source coding, taught in German, examples in English)
 - `ccam`: Channel Coding - Algebraic Methods (taugh in English)
 - `ccgbc`: Channel Coding - Graph-based Codes (taught in English)
