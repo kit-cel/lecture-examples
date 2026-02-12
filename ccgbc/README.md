@@ -1,7 +1,7 @@
 Example scripts for "Channel Coding - Graph-based Codes" lecture
 =================================================================================
 
-This repository contains examples and simulations used in the lecture [Channel Coding - Graph-based Codes]([http://www.cel.kit.edu/lehre_2701.php](https://www.youtube.com/watch?v=BAwHn95atvo&list=PLLDF9ieaJiSX-qDeYdrZNfpMo9UrUcu46)) of the faculty for electrical engineering and information technology (ETIT) at Karlsruhe Institute of Technology (KIT). The corresponding slides and lecture notes can be found in ILIAS (only available for enrolled students). The lecture is freely available on Youtube (click on link above)
+This repository contains examples and simulations used in the lecture [Channel Coding - Graph-based Codes](https://www.youtube.com/watch?v=BAwHn95atvo&list=PLLDF9ieaJiSX-qDeYdrZNfpMo9UrUcu46) of the faculty for electrical engineering and information technology (ETIT) at Karlsruhe Institute of Technology (KIT). The corresponding slides and lecture notes can be found in ILIAS (only available for enrolled students). The lecture is freely available on Youtube (click on link above)
 
 
 Python Dependencies
@@ -38,6 +38,7 @@ If you use, in any way, parts of this code in your own research or teaching that
 * L. Schmalen, "Channel Coding - Graph-based Codes: Lecture Examples," available online at http://www.github.org/KIT-CEL/lecture-examples/, 2025
 
 In case you have questions, comments, or suggestions regarding this code, please contact Laurent Schmalen (Laurent.Schmalen@kit.edu) or propose a pull request.
+
 
 
 
