@@ -4,25 +4,27 @@ dv = 3;
 dc = 6;
 
 % specify epsilon (erasure probability) at which simulation takes place
-epsilon = 0.3;
+epsilon = 0.2;
 
 % number of frames to simulate
-frames = 100;
+frames = 10000;
 
 
 % decoding iterations
 iterations = 50;
 
-% generate parity-check matrix of regular LDPC code
-H = generate_Gallager(dv, dc, 240);
+% length of the code
+n = 48;
 
-n = size(H,2);
 
 % simulate all-zero codeword
 x = zeros(1,n);
 
 errors = 0;
 for frame = 1:frames
+    % generate parity-check matrix of regular LDPC code
+    H = generate_Gallager(dv, dc, n);
+
     % erasure channel, first map to bipolar
     y = 1 - 2*x;        
     y(rand(size(x)) < epsilon) = 2;  % 2 denotes erasure

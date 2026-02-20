@@ -1,19 +1,21 @@
 Example scripts for "Channel Coding - Graph-based Codes" lecture
 =================================================================================
 
-This repository contains examples and simulations used in the lecture [Channel Coding - Graph-based Codes](http://www.cel.kit.edu/lehre_2701.php) of the faculty for electrical engineering and information technology (ETIT) at Karlsruhe Institute of Technology (KIT). The corresponding slides and lecture notes can be found in ILIAS (only available for enrolled students).
+This repository contains examples and simulations used in the lecture [Channel Coding - Graph-based Codes](https://www.youtube.com/watch?v=BAwHn95atvo&list=PLLDF9ieaJiSX-qDeYdrZNfpMo9UrUcu46) of the faculty for electrical engineering and information technology (ETIT) at Karlsruhe Institute of Technology (KIT). The corresponding slides and lecture notes can be found in ILIAS (only available for enrolled students). The lecture is freely available on Youtube (click on link above)
 
 
 Python Dependencies
 ---------------------
-- python >= 3.5, tested with python 3.6
+- python >= 3.5, tested with python 3.12
 - jupyter notebook
-- numpy
-- scipy version <= 1.2.1
+- numpy <= 2.3.5
+- galois
+- scipy version
 - matplotlib
 - lapack
 - cvxopt
 - cvxpy
+- scikit-commpy
 
 cvxpy has sometimes issues of working with newer versions of scipy and will produce cryptic error messages. It is therefore best to install scipy version 1.2.1. Also, it is necessary to install lapack, which doesn't come with the main anaconda channel. If possible, use the environment.yml (see below).
 
@@ -33,8 +35,10 @@ Licensing and Reuse
 This code is licensed under the GPLv2 license. 
 
 If you use, in any way, parts of this code in your own research or teaching that results in publications, please cite it as follows:<br>
-* L. Schmalen, "Channel Coding 2 - Advanced Methods: Lecture Examples," available online at http://www.github.org/KIT-CEL/lecture-examples/, 2019
+* L. Schmalen, "Channel Coding - Graph-based Codes: Lecture Examples," available online at http://www.github.org/KIT-CEL/lecture-examples/, 2025
 
 In case you have questions, comments, or suggestions regarding this code, please contact Laurent Schmalen (Laurent.Schmalen@kit.edu) or propose a pull request.
+
+
 
 
