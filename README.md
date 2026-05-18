@@ -6,7 +6,7 @@ This repository contains small examples and simulations used in our lectures. Th
 - `nt1`: Nachrichtentechnik I (Digital communications I, taught in German)
 - `nt2`: Nachrichtentechnik II (Digital communications II, taught in German)
 - `wt`: Wahrscheinlichkeitstheorie (Probability theory, taught in German)
-- `sigNT`: Signalverarbeitung in der Nachrichtentechnik (Signal processing in communications, taught in German)
+- `SPiC`: Signalverarbeitung in der Nachrichtentechnik (Signal processing in communications, taught in German)
 - `mloc`: Machine Learning and Optimization in Communications (taught in English)
 - `cas`: Coding of Audiovisual Signals (taught in English; former Quellencodierung, taught in German)
 - `ccam`: Channel Coding - Algebraic Methods (taugh in English)
