@@ -1,0 +1,24 @@
+[project]
+name = "ccgbc"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "cvxpy>=1.9.3",
+    "galois>=0.4.11",
+    "ipynb>=0.5.1",
+    "ipywidgets>=8.1.9",
+    "jupyterlab>=4.6.4",
+    "matplotlib>=3.11.2",
+    "numpy<=2.3.5",
+    "pyscipopt>=6.2.1",
+    "scikit-commpy>=0.8.0",
+    "scipy>=1.18.1",
+    "sympy>=1.14.0",
+    "tqdm>=4.70.1",
+]
+
+[project.optional-dependencies]
+# only needed for Guest_Lecture_Coding_Learning/Neural_decoding_Deep_Unfolding.ipynb
+neural = [
+    "tensorflow>=2.20",
+]
