@@ -44,7 +44,7 @@ Lizenz und Wiederverwendung
 Dieser Code steht unter der GPLv2-Lizenz.
 
 Wenn Sie Teile dieses Codes in Ihrer eigenen Forschung oder Lehre verwenden und daraus Publikationen entstehen, zitieren Sie ihn bitte wie folgt:<br>
-* L. Schmalen, "Nachrichtensysteme: Vorlesungsbeispiele," online verfügbar unter https://www.github.org/kit-cel/lecture-examples/, 2026
+* L. Schmalen, "Nachrichtensysteme: Vorlesungsbeispiele," online verfügbar unter https://www.github.com/kit-cel/lecture-examples/, 2026
 
 Bei Fragen, Kommentaren oder Verbesserungsvorschlägen zu diesem Code wenden Sie sich bitte an Laurent Schmalen (Laurent.Schmalen@kit.edu) oder erstellen Sie einen Pull Request.
 
@@ -98,6 +98,6 @@ Licensing and Reuse
 This code is licensed under the GPLv2 license.
 
 If you use, in any way, parts of this code in your own research or teaching that results in publications, please cite it as follows:<br>
-* L. Schmalen, "Nachrichtensysteme: Lecture Examples," available online at https://www.github.org/kit-cel/lecture-examples/, 2026
+* L. Schmalen, "Nachrichtensysteme: Lecture Examples," available online at https://www.github.com/kit-cel/lecture-examples/, 2026
 
 In case you have questions, comments, or suggestions regarding this code, please contact Laurent Schmalen (Laurent.Schmalen@kit.edu) or propose a pull request.
