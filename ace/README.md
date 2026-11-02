@@ -16,4 +16,3 @@ Usage
 The programming language used, Python, is pre-installed on common Linux distributions and OSX. However, we recommend students to use [`miniconda`](https://www.anaconda.com/docs/getting-started/miniconda/main), which is a minimal package manager free for use for educational purposes.
 
 Matlab and Simulink can be obtained free of charge by KIT students from the KIT software shop.
-
